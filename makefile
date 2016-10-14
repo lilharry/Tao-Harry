@@ -1,7 +1,7 @@
-compile: makeTunez.c nodeFunctions.c
-	gcc makeTunez.c nodeFunctions.c -o mixtape
+compile:myTunez.c nodeFunctions.c
+	gcc myTunez.c nodeFunctions.c -o mixtape
 
-run: mixtape
+run:mixtape
 	./mixtape
 
 clean:
