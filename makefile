@@ -1,5 +1,5 @@
-compile:myTunez.c nodeFunctions.c
-	gcc myTunez.c nodeFunctions.c -o mixtape
+compile:nodeFunctions.c myTunez.c
+	gcc nodeFunctions.c myTunez.c -o mixtape
 
 run:mixtape
 	./mixtape

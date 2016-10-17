@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 
 typedef struct song_node{ 
   char name[256];
@@ -8,25 +10,26 @@ typedef struct song_node{
 } song_node;
 
 
-void print_list( struct song_node *n ) {
+void print_list( song_node *n ) {
 
   printf("[ ");
   
   while(n) {
-    printf("%d ", n->data );
+    printf("%s %s", n->name, n->artist );
     n = n->next;
   }
   printf("]\n");
 }
 
 
-struct song_node * insert_front( struct song_node *n, int  d ) {
+struct song_node * insert_front( struct song_node *n, char* name, char*artist) {
 
   struct song_node *new = (struct song_node *)malloc(sizeof(struct song_node));
 
   new->next = n;
-  new->data = d;
-
+  strcpy(new->name, name);
+  strcpy(new->artist, artist);
+  
   return new;
 }
 
