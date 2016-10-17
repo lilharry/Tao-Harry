@@ -33,6 +33,25 @@ struct song_node * insert_front( struct song_node *n, char* name, char*artist) {
   return new;
 }
 
+struct song_node * insert_inorder(struct song_node*n,char*name,char*artist){
+	
+	struct song_node *new = (struct song_node *)malloc(sizeof(struct song_node));
+	while (*n){
+		if (n->name.strcmp(name) < 0){
+			break;
+		}
+		n++;
+	}
+	
+	new->next = n;
+	strcpy(new->name, name);
+	strcpy(new->artist, artist);
+  
+	
+}
+
+
+
 struct song_node * free_list( struct song_node *n ) {
 
   struct song_node *f = n;
