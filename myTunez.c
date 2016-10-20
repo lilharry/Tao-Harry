@@ -1,11 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "nodeFunctions.h"
 
-song_node table[26];
+#include <time.h>
+
+song_node* table[26];
 
 int main(){
-	print_list(table);
+	srand(time(NULL));
+	insert_front(table[0],"aba","abababa");
+	print_list(table[0]);
 	return 0;
 }
 

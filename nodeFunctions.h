@@ -1,3 +1,7 @@
+#ifndef node_functions_h
+#define node_functions_h
+#endif
+
 typedef struct n{ 
   char name[256];
   char artist[256];
