@@ -18,7 +18,7 @@ int main(){
 		table[i] = (song_node *)malloc(sizeof(song_node));
 	}
 
-	
+
 	//testing inserts
 	table[0] = insert_front(table[0],"this is 3rd","gerge");
 	print_list(table[0]);
@@ -45,7 +45,6 @@ int main(){
 	//testing free_list	
 	table[0] = free_list(table[0]);
 	print_list(table[0]);
-
 
 	//testing playlist functions
 	addSong(table, "b 1st", "a");
