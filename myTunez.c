@@ -35,10 +35,23 @@ int main(){
 	n = searchArtist(table[0],"gergee");
 	
 	//testing randNode
+	
 	n = randNode(table[0]);
 	
 	//testing deleteNode
-	n = deleteNode(n,"this is 2nd","babab");
+	print_list(table[0]);
+	n = deleteNode(table[0],"this is 2nd","babab");
+	
+	//testing free_list	
+	table[0] = free_list(table[0]);
+	print_list(table[0]);
+
+
+	//testing playlist functions
+	addSong(table, "b 1st", "a");
+	addSong(table, "b 3rd", "a");
+	addSong(table, "b 2st", "b");
+	addSong(table, "b 4th", "a");
 	return 0;
 }
 

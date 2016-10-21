@@ -11,7 +11,8 @@ typedef struct n{
 
 
 void print_list( song_node *n ) {
-  int counter = 1;
+ printf("printing list:\n");
+ int counter = 1;
   while(n) {
     printf("%d: %s -- %s\n",counter, n->artist, n->name );
     n = n->next;
@@ -109,7 +110,9 @@ int len(song_node *n){
 }
 
 song_node* randNode(song_node *n){
-	int i = rand()%len(n);
+	int x = rand(); 
+	int i = x%len(n);
+	printf("random #: %d, modulo'd #: %d\n",x,i);
 	printf("found %d songs...",len(n));
 	while(i--){
 		n = n->next;
@@ -124,7 +127,7 @@ song_node* deleteNode(song_node*n, char*name,char*artist){
 	if (!strcmp(name,n->name) && !strcmp(artist,n->artist)){
 		song_node*temp = n->next;
 		free(n);
-		printf("deleted, it was the head node");
+		printf("deleted, it was the head node\n\n");
 		return temp;
 	}
 	
@@ -136,7 +139,7 @@ song_node* deleteNode(song_node*n, char*name,char*artist){
 		if (!strcmp(name,n->name) && !strcmp(artist,n->artist)){
 			temp->next = n->next;
 			free(n);
-			printf("deleted, it was not the head node");
+			printf("deleted, it was not the head node\n\n");
 			return head;
 		}
 		temp = n;
@@ -153,6 +156,7 @@ song_node * free_list( song_node *n ) {
     free(f);
     f = n;
   }
+  printf("list cleared\n\n");
   return n;
 }
 

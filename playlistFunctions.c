@@ -17,7 +17,7 @@ song_node* findSong(song_node*table[],char*name){
 song_node* findArtist(song_node*table[], char*artist){
 	int i = 0;
 	while ((i++) < 26){
-		song_node * temp = searchArtist(table[row],artist);
+		song_node * temp = searchArtist(table[i],artist);
 		if (temp){
 			return temp;
 		}
@@ -26,7 +26,7 @@ song_node* findArtist(song_node*table[], char*artist){
 }
 
 void printLetter(song_node*table[], char*letter){
-	int row = letter % 'a';
+	int row = letter[0] % 'a';
 	print_list(table[row]);
 }
 void printArtistSongs(song_node*table[], char*artist){
@@ -49,6 +49,7 @@ void printArtistSongs(song_node*table[], char*artist){
 void printLibrary(song_node*table[]){
 	int i = 0;
 	while ((i++)<26){
+		printf("%c list\n",i+'a');
 		print_list(table[i]);
 	}
 }
@@ -56,13 +57,15 @@ int lenLibrary(song_node*table[]){
 	int len = 0;
 	int i = 0;
 	while ((i++)<26){
-		len += len(table[i]);
+		song_node *n = table[i];
+		while (n){
+			len++;
+		}
 	}
 	return len;
 }
 
 void shuffleLibrary(song_node*table[]){
-	srand(time(NULL));
 	int randNum = rand() % lenLibrary(table);
 	
 	song_node* shuffled[randNum];
