@@ -95,16 +95,31 @@ void shuffleLibrary(song_node*table[]){
 
 song_node* deleteSong(song_node*table[],char*name,char*artist){
 	int row = name[0] % 'a';
+	
+	printf("before deleting a song");
+	print_list(*table);
+
+	
 	table[row] = deleteNode(table[row],name,artist);
+	printf("after deleting a song");
+	print_list(*table);
 	return table[row];
 }
 
 song_node* clearLibrary(song_node*table[]){
-	int i = 0;
+        int i = 0;
+	
+	printf("before clearing");
+	print_list(*table);
+	
 	while (i<26){
 		free_list(table[i]);
 		i++;
 	}
+
+	printf("after clearing");
+	print_list(*table);
+	
 	return 0;
 }
 
