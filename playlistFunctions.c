@@ -62,31 +62,36 @@ void printLibrary(song_node*table[]){
 	}
 }
 int lenLibrary(song_node*table[]){
-	int len = 0;
+	int length = 0;
 	int i = 0;
 	while (i<26){
-		song_node *n = table[i];
-		while (n){
-			len++;
-		}
+		length += len(table[i]);
 		i++;
 	}
-	return len;
+	return length;
 }
 
+
+song_node* randrow(song_node*table[]){
+	song_node* x = table[rand()%26];
+	while (len(x) == 0){
+		x = table[rand()%26];
+	}
+	return x;
+}
 void shuffleLibrary(song_node*table[]){
-	int randNum = rand() % lenLibrary(table);
-	
-	song_node* shuffled[randNum];
 	int i = 0;
 	int counter = 1;
-	while (i<randNum){
-		int randrow = rand() % 26;
-		song_node* randnode = randNode(table[i]);
-		printf("%d: %s -- %s\n",counter++,randnode->artist,randnode->name);
-		i++;
-	}		
+	while (i<lenLibrary(table)){
+		song_node* randnode = randNode(randrow(table));
+		if (randnode){
+			printf("%d: %s -- %s\n",counter++,randnode->artist,randnode->name);
+			i++;
+			counter++;
+		}
+	}
 }
+
 
 song_node* deleteSong(song_node*table[],char*name,char*artist){
 	int row = name[0] % 'a';

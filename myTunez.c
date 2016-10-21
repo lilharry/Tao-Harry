@@ -65,6 +65,9 @@ int main(){
 	//printletter
 	printLetter(table,"b");
 
+	//shuffleLibrary
+	
+	shuffleLibrary(table);
 	return 0;
 	
 }

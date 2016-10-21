@@ -106,6 +106,9 @@ int len(song_node *n){
 }
 
 song_node* randNode(song_node *n){
+	if (len(n) == 0){
+		return 0;
+	}
 	int x = rand(); 
 	int i = x%len(n);
 	printf("random #: %d, modulo'd #: %d\n",x,i);
