@@ -14,8 +14,9 @@ int main(){
 
 
 	int i = 0;
-	while ((i++)<26){		
+	while (i<26){		
 		table[i] = (song_node *)malloc(sizeof(song_node));
+		i++;
 	}
 
 
