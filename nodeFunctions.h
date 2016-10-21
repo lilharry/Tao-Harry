@@ -1,6 +1,5 @@
 #ifndef nodeFunctions_H
 #define nodeFunctions_H
-#endif
 
 typedef struct n{ 
   char name[256];
@@ -18,3 +17,4 @@ song_node * searchArtist(song_node *n, char*artist);
 song_node* randNode(song_node *n);
 song_node* deleteNode(song_node*n, char*name,char*artist);
 int len(song_node *n);
+#endif

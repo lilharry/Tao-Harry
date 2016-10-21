@@ -1,6 +1,5 @@
 #ifndef playlist_functions_h
 #define playlist_functions_h
-#endif
 
 void shuffleLibrary(song_node*table[]);
 int lenLibrary(song_node*table[]);
@@ -11,3 +10,4 @@ song_node* findArtist(song_node*table[], char*artist);
 song_node* findSong(song_node*table[],char*name);
 int addSong(song_node*table[],char*name,char*artist);
 
+#endif
