@@ -4,17 +4,17 @@
 #include "nodeFunctions.h"
 
 
-int addSong(song node*table[],char*name,char*artist){
+int addSong(song_node*table[],char*name,char*artist){
 	int row = name[0] % 'a';
 	table[row] = insert_inorder(table[row],name,artist);
 	return 1;
 }
 
-song_node* findSong(song node*table[],char*name){
+song_node* findSong(song_node*table[],char*name){
 	int row = name[0] % 'a';
 	return searchSong(table[row],name);
 }
-song_node* findArtist(song node*table[], char*artist){
+song_node* findArtist(song_node*table[], char*artist){
 	int i = 0;
 	while ((i++) < 26){
 		song_node * temp = searchArtist(table[row],artist);
@@ -25,11 +25,11 @@ song_node* findArtist(song node*table[], char*artist){
 	return 0;
 }
 
-void printLetter(song node*table[], char*letter){
+void printLetter(song_node*table[], char*letter){
 	int row = letter % 'a';
 	print_list(table[row]);
 }
-void printArtistSongs(song node*table[], char*artist){
+void printArtistSongs(song_node*table[], char*artist){
 	printf("Songs by %s\n------------",artist);
 	int i = 0;
 	while ((i++)<26){
@@ -46,13 +46,13 @@ void printArtistSongs(song node*table[], char*artist){
 	
 }
 
-void printLibrary(song node*table[]){
+void printLibrary(song_node*table[]){
 	int i = 0;
 	while ((i++)<26){
 		print_list(table[i]);
 	}
 }
-int lenLibrary(song node*table[]){
+int lenLibrary(song_node*table[]){
 	int len = 0;
 	int i = 0;
 	while ((i++)<26){
@@ -61,7 +61,7 @@ int lenLibrary(song node*table[]){
 	return len;
 }
 
-void shuffleLibrary(song node*table[]){
+void shuffleLibrary(song_node*table[]){
 	srand(time(NULL));
 	int randNum = rand() % lenLibrary(table);
 	
@@ -74,5 +74,22 @@ void shuffleLibrary(song node*table[]){
 		printf("%d: %s -- %s\n",counter++,randnode->artist,randnode->name);	
 	}		
 }
+
+song_node* deleteSong(song_node*table[],char*name,char*artist){
+	int row = name[0] % 'a';
+	table[row] = deleteNode(table[row],name,artist);
+	return table[row];
+}
+
+song_node* clearLibrary(song_node*table[]){
+	int i = 0;
+	while ((i++)<26){
+		free_list(table[i]);
+	}
+	return 0;
+}
+
+
+
 
 

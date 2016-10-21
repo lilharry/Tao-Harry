@@ -22,7 +22,7 @@ void print_list( song_node *n ) {
 
 
 song_node * insert_front( song_node *n, char* name, char*artist) {
-  printf("before insert_front:\n ");
+  printf("before insert_front:\n");
   print_list(n);
   
   song_node *new = (song_node *)malloc(sizeof(song_node));
@@ -31,7 +31,7 @@ song_node * insert_front( song_node *n, char* name, char*artist) {
   strcpy(new->name, name);
   strcpy(new->artist, artist);
   
-  printf("\nafter insert_front:\n ");
+  printf("\nafter insert_front:\n");
   print_list(new);
   printf("\n\n");
   return new;
@@ -40,25 +40,32 @@ song_node * insert_front( song_node *n, char* name, char*artist) {
 
 song_node * insert_inorder(song_node*n,char*name,char*artist){
 	
+	if (strcmp(n->name,name) > 0){
+		return insert_front(n,name,artist);
+	}
 	song_node *new = (song_node *)malloc(sizeof(song_node));
 	
+
+	song_node *head = n;
+
+    printf("before insert_inorder:\n");
+    print_list(head);
+
 	while (n){
-		//					insert
+		//				  insert
 		if (strcmp(n->name,name) < 0){
 			break;
 		}
 		n = n->next;
  	}
-    printf("before insert_inorder:\n");
-    print_list(n);
  
 	new->next = n->next;
 	n->next = new;
 	strcpy(new->name, name);
 	strcpy(new->artist, artist);
     
-	printf("\nafter insert_front:\n");
-    print_list(n);
+	printf("after insert_inorder:\n");
+    print_list(head);
 	printf("\n\n");
  
 	
@@ -103,10 +110,11 @@ int len(song_node *n){
 
 song_node* randNode(song_node *n){
 	int i = rand()%len(n);
-	printf("rand num between 0 and %d: %d\n\n",len(n), i);
+	printf("found %d songs...",len(n));
 	while(i--){
 		n = n->next;
 	}
+	printf("choosing random song... %s\n",n->name);
 	return n;
 }
 
