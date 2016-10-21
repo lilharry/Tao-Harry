@@ -11,7 +11,6 @@ typedef struct n{
 
 
 void print_list( song_node *n ) {
- printf("printing list:\n");
  int counter = 1;
   while(n) {
     printf("%d: %s -- %s\n",counter, n->artist, n->name );
@@ -40,38 +39,35 @@ song_node * insert_front( song_node *n, char* name, char*artist) {
 }
 
 song_node * insert_inorder(song_node*n,char*name,char*artist){
-	
-	if (strcmp(n->name,name) > 0){
-		return insert_front(n,name,artist);
-	}
-	song_node *new = (song_node *)malloc(sizeof(song_node));
-	
 
-	song_node *head = n;
+  if ( n == NULL || strcmp(n->name, name) > 0 )
+    return insert_front(n, name, artist);
+  
+  printf("before insert_inorder:\n");
+  print_list(n);
 
-    printf("before insert_inorder:\n");
-    print_list(head);
+  song_node *head = n;
+  song_node *new = (song_node *)malloc(sizeof(song_node));
 
-	while (n){
-		//				  insert
-		if (strcmp(n->name,name) < 0){
-			break;
-		}
-		n = n->next;
- 	}
- 
-	new->next = n->next;
-	n->next = new;
-	strcpy(new->name, name);
-	strcpy(new->artist, artist);
-    
-	printf("after insert_inorder:\n");
-    print_list(head);
-	printf("\n\n");
- 
-	
-	return n;
-	
+  strcpy(new->name, name);
+  strcpy(new->artist, artist);
+
+  while ( n->next != NULL ) { 
+    if ( strcmp(n->next->name, name) > 0 ) {
+      song_node *temp = n->next;
+      new->next = temp;
+      n->next = new;
+      return head;
+    }
+    n = n->next;
+  } 
+
+  n->next = new;
+  new->next = NULL;
+  printf("after insert_inorder:\n");
+  print_list(head);
+  
+  return head;
 }
 
 song_node * searchSong(song_node *n, char* name){

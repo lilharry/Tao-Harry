@@ -6,19 +6,24 @@
 
 int addSong(song_node*table[],char*name,char*artist){	
 	int row = name[0] % 'a';
+	printf("Adding %s -- %s to row %d...\n",artist,name,row);
 	table[row] = insert_inorder(table[row],name,artist);
 	return 1;
 }
 
 song_node* findSong(song_node*table[],char*name){
 	int row = name[0] % 'a';
+	printf("Looking in row %d for song %s...\n",row,name);
 	return searchSong(table[row],name);
 }
 song_node* findArtist(song_node*table[], char*artist){
 	int i = 0;
+	printf("Looking for artist %s...\n",artist);
 	while (i < 26){
+		printf("row %d: ",i);
 		song_node * temp = searchArtist(table[i],artist);
 		if (temp){
+			printf("%s -- %s",temp->artist,temp->name); 
 			return temp;
 		}
 		i++;
@@ -28,6 +33,7 @@ song_node* findArtist(song_node*table[], char*artist){
 
 void printLetter(song_node*table[], char*letter){
 	int row = letter[0] % 'a';
+	printf("in row %d...\n",row);
 	print_list(table[row]);
 }
 void printArtistSongs(song_node*table[], char*artist){

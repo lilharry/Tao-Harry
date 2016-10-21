@@ -12,14 +12,13 @@ song_node* table[26];
 int main(){
 	srand(time(NULL));
 
-
 	int i = 0;
-	while (i<26){		
+/*
+	while (i<26){
 		table[i] = (song_node *)malloc(sizeof(song_node));
 		i++;
 	}
-
-
+	*/
 	//testing inserts
 	table[0] = insert_front(table[0],"this is 3rd","gerge");
 	print_list(table[0]);
@@ -48,11 +47,26 @@ int main(){
 	print_list(table[0]);
 
 	//testing playlist functions
+	//add and print library
 	addSong(table, "b 1st", "a");
-	addSong(table, "b 3rd", "a");
-	addSong(table, "b 2st", "b");
-	addSong(table, "b 4th", "a");
+	addSong(table, "c 3rd", "a");
+	addSong(table, "b 2nd", "b");
+	addSong(table, "z 4th", "a");
+	printLibrary(table);
+
+	//find song
+	findSong(table, "b 1st");
+	findSong(table, "i don't exist");
+
+	//find artist
+	findArtist(table,"a");
+	findArtist(table,"no existo");
+	
+	//printletter
+	printLetter(table,"b");
+
 	return 0;
+	
 }
 
 
