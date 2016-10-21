@@ -11,18 +11,18 @@ typedef struct n{
 
 
 void print_list( song_node *n ) {
-  printf("[ ");
-  
+  int counter = 1;
   while(n) {
-    printf("%s %s", n->name, n->artist );
+    printf("%d: %s -- %s\n",counter, n->artist, n->name );
     n = n->next;
+	counter++;
   }
-  printf("]\n\n");
+  printf("\n");
 }
 
 
 song_node * insert_front( song_node *n, char* name, char*artist) {
-  printf("before insert_front: ");
+  printf("before insert_front:\n ");
   print_list(n);
   
   song_node *new = (song_node *)malloc(sizeof(song_node));
@@ -31,10 +31,11 @@ song_node * insert_front( song_node *n, char* name, char*artist) {
   strcpy(new->name, name);
   strcpy(new->artist, artist);
   
-  printf("\nafter insert_front: ");
-  print_list(n);
+  printf("\nafter insert_front:\n ");
+  print_list(new);
   printf("\n\n");
   return new;
+
 }
 
 song_node * insert_inorder(song_node*n,char*name,char*artist){
@@ -48,7 +49,7 @@ song_node * insert_inorder(song_node*n,char*name,char*artist){
 		}
 		n = n->next;
  	}
-    printf("before insert_inorder: ");
+    printf("before insert_inorder:\n");
     print_list(n);
  
 	new->next = n->next;
@@ -56,7 +57,7 @@ song_node * insert_inorder(song_node*n,char*name,char*artist){
 	strcpy(new->name, name);
 	strcpy(new->artist, artist);
     
-	printf("\nafter insert_front: ");
+	printf("\nafter insert_front:\n");
     print_list(n);
 	printf("\n\n");
  
@@ -109,7 +110,7 @@ song_node* randNode(song_node *n){
 	return n;
 }
 
-song_node* delete(song_node*n, char*name,char*artist){
+song_node* deleteNode(song_node*n, char*name,char*artist){
 	printf("deleting %s -- %s: ",artist,name);
 	//head
 	if (!strcmp(name,n->name) && !strcmp(artist,n->artist)){
@@ -138,12 +139,11 @@ song_node* delete(song_node*n, char*name,char*artist){
 }
 
 song_node * free_list( song_node *n ) {
-
   song_node *f = n;
   while ( n ) {
     n = n->next;
     free(f);
-    f = n;    
+    f = n;
   }
   return n;
 }
